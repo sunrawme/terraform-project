@@ -11,3 +11,6 @@ output "sonarqube_private_ips" {
 output "rds_endpoint" {
   value = aws_db_instance.postgres.endpoint
 }
+output "alb_dns" {
+  value = aws_lb.sonarqube_alb.dns_name
+}
