@@ -23,7 +23,7 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_security_group" "sonarqube_sg" {
-  name = "sonarqube-sg-v1"
+ name_prefix = "sonarqube-"
 
   ingress {
     from_port   = 22
