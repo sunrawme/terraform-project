@@ -8,3 +8,6 @@ output "sonarqube_private_ips" {
     aws_instance.sonarqube_2.private_ip
   ]
 }
+output "rds_endpoint" {
+  value = aws_db_instance.postgres.endpoint
+}
