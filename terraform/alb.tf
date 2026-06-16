@@ -35,3 +35,39 @@ resource "aws_lb_target_group" "sonarqube_tg" {
     port = "9000"
   }
 }
+
+
+resource "aws_lb_target_group_attachment" "sq1" {
+
+  target_group_arn = aws_lb_target_group.sonarqube_tg.arn
+
+  target_id = aws_instance.sonarqube_1.id
+
+  port = 9000
+}
+
+resource "aws_lb_target_group_attachment" "sq2" {
+
+  target_group_arn = aws_lb_target_group.sonarqube_tg.arn
+
+  target_id = aws_instance.sonarqube_2.id
+
+  port = 9000
+}
+
+resource "aws_lb_listener" "http" {
+
+  load_balancer_arn = aws_lb.sonarqube_alb.arn
+
+  port = 80
+
+  protocol = "HTTP"
+
+  default_action {
+
+    type = "forward"
+
+    target_group_arn = aws_lb_target_group.sonarqube_tg.arn
+  }
+}
+
